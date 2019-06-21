@@ -82,7 +82,6 @@ function elit_downloadable_shortcode_init() {
         $shortcode_atts['images'][0]['abs_path'] = get_attached_file( $id );
       }
 
-
       $shortcode_atts = 
         elit_downloadable_get_atts( $shortcode_atts, 
                                     elit_downloadable_is_image( $shortcode_atts ) );
@@ -168,9 +167,7 @@ function elit_downloadable_shortcode_init() {
         //$atts['name']       = basename( $image_url );
 
       } else {
-
         $image_path = get_attached_file( $atts['display_id'] );
-
         $asset_path = get_attached_file( $atts['ids'] );
         $asset_path_parts = explode( '.', basename($asset_path) );
 
@@ -331,7 +328,7 @@ function elit_downloadable_shortcode_init() {
           $markup .= "       <span>Dimensions: </span>$dimensions pixels<br>";
         }
       }
-      $markup .= "       <span class='downloadable__note'><a href='mailto:MSchallhorn@osteopathic.org?subject=" . rawurlencode('OMED Marketing Materials') . "'>Request additional sizes <i class='downloadable__icon--email'></i></a></span>";
+      $markup .= "       <span class='downloadable__note'><a href='mailto:marketing@osteopathic.org?subject=" . rawurlencode('OMED Marketing Materials') . "'>Request additional sizes <i class='downloadable__icon--email'></i></a></span>";
 
       $markup .= "       <span>Format: </span>$filetype<br>";
       if ( ! empty( $filesize ) ):
