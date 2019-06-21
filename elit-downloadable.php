@@ -21,7 +21,6 @@ if (!defined('WPINC')) {
 function elit_downloadable_shortcode_init() {
 
   if ( ! shortcode_exists( 'downloadable' ) ) {
-    
     /**
      * Create the shortcode.
      *
@@ -29,7 +28,6 @@ function elit_downloadable_shortcode_init() {
      * @return void
      */
     function elit_downloadable_shortcode( $atts = array() ) {
-
       $atts = array_change_key_case( (array)$atts, CASE_LOWER );
 
       elit_downloadable_enqueue();
@@ -117,7 +115,6 @@ function elit_downloadable_shortcode_init() {
      * @return boolean Whether the asset is an image
      */
     function elit_downloadable_is_image( $atts ) {
-
       $first_id = elit_downloadable_get_first_id( $atts['ids'] );
 
       return empty( $atts['display_id'] ) || $atts['display_id'] == $first_id;
@@ -130,7 +127,6 @@ function elit_downloadable_shortcode_init() {
      * @return array $atts The shortcode attributes with replaced keys
      */
     function elit_format_atts( $atts ) {
-      
       return array_combine(
         array_map( function( $key ) use ( $atts ) { 
           return str_replace( '-', '_', $key );
@@ -148,7 +144,6 @@ function elit_downloadable_shortcode_init() {
      * @return array   The final shortcode attributes for the downloadable asset
      */
     function elit_downloadable_get_atts( $atts, $downloadable_is_image = true ) {
-
       if ( ! ( $atts && ! empty( $atts['images'] ) ) ) {
         return false;
       }
@@ -213,7 +208,6 @@ function elit_downloadable_shortcode_init() {
      *
      */
     function elit_downloadable_human_filesize( $bytes, $decimals = 2 ) {
-
       $factor = floor( ( strlen( $bytes ) - 1 ) / 3 );
 
       if ( $factor > 0 ) {
@@ -230,7 +224,6 @@ function elit_downloadable_shortcode_init() {
      * @return string The image type
      */
     function elit_downloadable_get_image_type( $image_url)  {
-
       $image_info = getimagesize( $image_url );
 
       if ( $image_info ) {
@@ -247,7 +240,6 @@ function elit_downloadable_shortcode_init() {
      * @return void
      */
     function elit_downloadable_enqueue() {
-
       $css_file = 'elit-downloadable.css';
       $css_path = "public/styles/$css_file";
       $js_file = 'elit-downloadable-bundle.js';
@@ -276,8 +268,7 @@ function elit_downloadable_shortcode_init() {
      * @param array $atts The shortcode attributes
      * @return string The HTML markup
      */
-    function elit_downloadable_markup( $atts )
-    {
+    function elit_downloadable_markup( $atts ) {
       extract( $atts );
 
       $download_path = plugins_url( "download.php", __FILE__ ) .  '?asset=';
@@ -341,11 +332,6 @@ function elit_downloadable_shortcode_init() {
         }
       }
       $markup .= "       <span class='downloadable__note'><a href='mailto:MSchallhorn@osteopathic.org?subject=" . rawurlencode('OMED Marketing Materials') . "'>Request additional sizes <i class='downloadable__icon--email'></i></a></span>";
-
-
-
-
-
 
       $markup .= "       <span>Format: </span>$filetype<br>";
       if ( ! empty( $filesize ) ):
